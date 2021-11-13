@@ -1,2 +1,2 @@
-# UTD---Gamify
+# UTD-Gamify
 Indoor games booking area
