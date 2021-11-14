@@ -25,7 +25,7 @@ app.get("/index",(req,res)=>{
 })
 
 app.get("/getlocations",(req,res) => {
-  try{
+  try {
     locationColl.find({},function(err, result){
       if (err) throw err;
       res.json(result);
