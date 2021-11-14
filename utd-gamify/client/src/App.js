@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg"
 import "./App.css"
 
-function App(){
+function App() {
   const [data, setData] = React.useState(null);
+
   React.useEffect(() => {
-    fetch("http://localhost:3001/api")
+    fetch("/api")
       .then((res) => res.json())
       .then((data) => setData(data.message));
-      console.log("GHere");
   }, []);
 
   return (
