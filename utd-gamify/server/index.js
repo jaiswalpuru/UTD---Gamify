@@ -37,30 +37,64 @@ app.get("/getlocations",(req,res) => {
 
 app.post('/bookgame',(req, res, next) => {
   var netId = req.body.netid.trim();
+  var players = req.body.players;
+  var gameid = req.body.game;
+  var roomNumber = req.body.room;
+  var time = new Date();
+  var book = false;
+  var gameRespone;
+  var roomResponse;
+  var playersLeft = 0;
 
   //check if the player is already playing
   logsColl.findOne({ "netId" : netId}, function(err,result){
     if (err) throw err;
     if (res!=null){
-      res.json(result);
+      roomColl.findOne({_id:req.body.room},function(err, roomRes){
+        if (err) throw err;
+        roomResponse = roomRes;
+      });
+
+      var getTimeDiff = (result.endtime-result.time)/60000;
+      gamesColl.findOne({_id:result.gameid},function(err, gresult){
+        if (err) throw err;
+        gameRespone = gresult;
+      });
+      if (getTimeDiff > gameRespone.time_limit) {
+        logsColl.remove({_id:result._id},function(err, delRes){
+          if (err) throw(err);
+          book = true;
+          playersLeft = result.players;
+        });
+      } else{
+        res.json(result);
+      }
     }
+
+    if (roomResponse.capacityleft >= players){
+      book = true;
+    }else{
+      res.json({"message":"Capacity Full"});
+    }
+
+    //do the actual booking
+    if (book===true){
+      var minutesToAdd = gameResponse.time_limit; //will be dynamic based on the game
+      logsColl.insert({
+        netId:netId,
+        time : time,
+        gameid :gameid,
+        room :room,
+        players:players,
+        endtime : new Date(time.getTime() + minutesToAdd*60000)
+      },function(err, res) { if (err) throw err; });
+      var newValue = {$set:{capacityleft:capacityleft-players+playersLeft}};
+      roomColl.update({_id:req.body.room}, newValue,function(err, roomRes){
+        if (err) throw err;
+        res.json({"message":"Booked"})
+      });
+    }
+    
   });
-  
-  var time = new Date();
-  var minutesToAdd = 30; //will be dynamic based on the game
-  var gameid = req.body.game;
-  try {
-    logsColl.insert({
-      netId:netId,
-      time : time,
-      gameid :gameid,
-      room :room,
-      endtime : new Date(time.getTime() + minutesToAdd*60000)
-    },function(err, res) { if (err) throw err; });
-  } catch(err) {
-    console.log(err);
-  } finally {
-    res.json({"message":"inserted"});  
-  }
 });
   
