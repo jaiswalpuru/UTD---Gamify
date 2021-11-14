@@ -1,6 +1,9 @@
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 const ValidateNetID = () => {
+  const navigate = useNavigate();
+  const goToLocation = () => navigate('/location', {state: {netID: input}});
   const [input, setInput] = useState("");
   return (
     <>
@@ -8,7 +11,7 @@ const ValidateNetID = () => {
         onSubmit={(e) => {
           let re = new RegExp("^[a-zA-Z]{3}[0-9]{6}$");
           if (re.test(input)) {
-            console.log("Correct Net ID");
+            goToLocation();
           } else {
             e.preventDefault();
             console.log("Incorrect Net ID");
