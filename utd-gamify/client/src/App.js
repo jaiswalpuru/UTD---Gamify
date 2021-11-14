@@ -3,10 +3,10 @@ import logo from "./logo.svg"
 import "./App.css"
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState(null);
 
-  React.useEffect(() => {
-    fetch("/api")
+  useEffect(() => {
+    fetch("/index")
       .then((res) => res.json())
       .then((data) => setData(data.message));
   }, []);
@@ -14,8 +14,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
+        <p>{data}</p>
       </header>
     </div>
   );
