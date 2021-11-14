@@ -37,7 +37,7 @@ const Location = () => {
     },[]);
 
   console.log("data",data);
-
+  if (data!==null){
   return (
     <>
       <div class="jumbotron">
@@ -46,13 +46,18 @@ const Location = () => {
       </div>
       <div class="container mx-3">
         <div class="row mt-3">
-          <SportsList gameImage={ecsw} imageName="ECSW" />
-          <SportsList gameImage={activitycenter} imageName="ActivityCenter" />
-          <SportsList gameImage={jsom} imageName="JSOM" />
+          {data.map((d) => {
+            let gameImg = d.location_name + '.jpg';
+            console.log(gameImg.split(" ").join(""),d.location_name);
+            <SportsList gameImage={gameImg} imageName={d.location_name} />
+          })}
         </div>
       </div>
     </>
   );
+  }else{
+    return (<p>Hello</p>);
+  }
 };
 
 export default Location;
