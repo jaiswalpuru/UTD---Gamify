@@ -2,10 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import logo from "./logo.svg"
 import "./App.css";
-import HomePage from "./components/Homepage";
-import Location from "./components/Location";
-import Rooms from "./components/Rooms";
-import GameZone from "./components/GameZone";
+
+import Login from "./components/Login";
 
 // function App() {
 //   const [data, setData] = useState(null);
@@ -29,11 +27,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/location" element={<Location />} />
-        <Route path="/location/*" element={<Rooms />} />
-        <Route path="/rooms/gamezone" element={<GameZone />} />
-        
+        <Route path="/" exact element={<Login />} />
+
       </Routes>
     </BrowserRouter>
   );

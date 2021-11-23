@@ -103,5 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# Junk
-.DS_STORE
+#Junk
+.DS_Store
