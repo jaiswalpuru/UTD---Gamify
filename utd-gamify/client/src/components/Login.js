@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -9,16 +10,24 @@ import squash from '../images/squash.jpg';
 import ttSU from '../images/ttSU.jpg';
 
 
-function Login() {
+const Login = () => {
 
     const [toggle, setToggle] = useState(true);
+    const [signUpBody, setSignUpBody] = useState({});
+    const [signInBody, setSignInBody] = useState({});
 
     const signUp = () => {
-        console.log(`Hello world signUp`);
+        axios.post(`http://localhost:3001/api/v1/signup`, { signUpBody })
+            .then((data) => {
+
+            })
     }
 
     const signIn = () => {
-        console.log(`Hello world signIn`);
+        axios.post(`http://localhost:3001/api/v1/signin`, { signInBody })
+            .then((data) => {
+
+            })
     }
 
     return (
@@ -37,7 +46,6 @@ function Login() {
 
             <div className="body-bg p-5">
                 <div className="row">
-
                 </div>
                 {toggle &&
                     <div className="row container-fluid">
@@ -46,10 +54,16 @@ function Login() {
                             <Form>
                                 <h3>Sign In</h3>
                                 <Form.Group className="mb-3" controlId="formGroupNetID">
-                                    <Form.Control type="text" placeholder="Enter NetID" />
+                                    <Form.Control type="text" placeholder="Enter NetID"
+                                        name="netId" value={signInBody.netId}
+                                        onChange={e => setSignInBody({ ...signInBody, [e.target.name]: e.target.value })}
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Control type="password" placeholder="Enter Password" />
+                                    <Form.Control type="password" placeholder="Enter Password"
+                                        name="password" value={signInBody.password}
+                                        onChange={e => setSignInBody({ ...signInBody, [e.target.name]: e.target.value })}
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Button className='white-button'
@@ -70,16 +84,28 @@ function Login() {
                             <Form>
                                 <h3>Sign Up</h3>
                                 <Form.Group className="mb-3" controlId="formGroupNetID">
-                                    <Form.Control type="text" placeholder="Enter NetID" />
+                                    <Form.Control type="text" placeholder="Enter NetID"
+                                        name="netId" value={signInBody.netId}
+                                        onChange={e => setSignUpBody({ ...signUpBody, [e.target.name]: e.target.value })}
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupEmail">
-                                    <Form.Control type="email" placeholder="Enter Email" />
+                                    <Form.Control type="email" placeholder="Enter Email"
+                                        name="email" value={signInBody.email}
+                                        onChange={e => setSignUpBody({ ...signUpBody, [e.target.name]: e.target.value })}
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupName">
-                                    <Form.Control type="text" placeholder="Enter Full Name" />
+                                    <Form.Control type="text" placeholder="Enter Full Name"
+                                        name="name" value={signInBody.name}
+                                        onChange={e => setSignUpBody({ ...signUpBody, [e.target.name]: e.target.value })}
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Control type="password" placeholder="Enter Password" />
+                                    <Form.Control type="password" placeholder="Enter Password"
+                                        name="password" value={signInBody.password}
+                                        onChange={e => setSignUpBody({ ...signUpBody, [e.target.name]: e.target.value })}
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Button className='white-button'
