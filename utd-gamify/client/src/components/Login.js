@@ -17,16 +17,16 @@ const Login = () => {
     const [signInBody, setSignInBody] = useState({});
 
     const signUp = () => {
-        axios.post(`http://localhost:3001/api/v1/signup`, { signUpBody })
+        axios.post(`/api/v1/signup`, { signUpBody })
             .then((data) => {
 
             })
     }
 
     const signIn = () => {
-        axios.post(`http://localhost:3001/api/v1/signin`, { signInBody })
+        axios.post(`/api/v1/signin`, { signInBody })
             .then((data) => {
-
+                console.log(data);
             })
     }
 

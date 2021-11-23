@@ -8,6 +8,7 @@ var userColl = db.get('users');
 
 // login is checking if the user entered the correct netid and password
 router.post('/signin', (req, res) => {
+    console.log(req.body);
     var netId = req.body.netId.trim();
     var password = req.body.password.trim();
 
