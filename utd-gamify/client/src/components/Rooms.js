@@ -1,8 +1,8 @@
 import {useLocation} from 'react-router-dom'
 const Rooms = () => {
     const { state } = useLocation();
-    const { netID } = state;
-    console.log(netID);
+    const { netID, p } = state;
+    console.log(p);
   return (
     <>
       <div class="jumbotron">
