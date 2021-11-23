@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../App.css";
 
 
+
 function Login() {
+
+    const [toggle, setToggle] = useState(false)
     return (
         <div>
-            <nav class="navbar navbar-dark header-bg ">
+            <nav class="navbar navbar-dark header-bg p-2">
                 <span className="container">
                     <span className="navbar-brand">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-joystick" viewBox="0 0 16 16">
@@ -17,7 +20,19 @@ function Login() {
                 </span>
             </nav>
 
-            <div className="body-bg">
+            <div className="body-bg p-5">
+                <div className="row">
+
+                </div>
+                {toggle &&
+                    <div>
+
+                    </div>}
+
+                {!toggle &&
+                    <div></div>}
+
+
                 <div className="row container-fluid">
                     <div className="col-md-2"></div>
                     <div className="col-md-8 text-center text-white">
@@ -27,25 +42,25 @@ function Login() {
                     <div className="col-md-2"></div>
                 </div>
 
-                {/* <div className="row container-fluid">
+                <div className="row container-fluid">
                     <div className="col-md-2"></div>
                     <div className="col-md-8 text-center">
                         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="../images/chess.jpeg" alt="First slide" />
+                                    <img class="d-block w-100" src="./images/chess.jpeg" alt="First slide" />
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="../images/" alt="Second slide" />
+                                    <img class="d-block w-100" src="./images/chess.jpeg" alt="Second slide" />
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="../images/" alt="Third slide" />
+                                    <img class="d-block w-100" src="./images/chess.jpeg" alt="Third slide" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-2"></div>
-                </div> */}
+                </div>
 
 
             </div>
