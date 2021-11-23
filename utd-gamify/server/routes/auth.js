@@ -8,9 +8,8 @@ var userColl = db.get('users');
 
 // login is checking if the user entered the correct netid and password
 router.post('/signin', (req, res) => {
-    console.log(req.body);
-    var netId = req.body.netId.trim();
-    var password = req.body.password.trim();
+    var netId = req.body.signInBody.netId.trim();
+    var password = req.body.signInBody.password.trim();
 
     userColl.find({netId:netId}, function(err, findRes){
         if (err) {
@@ -18,7 +17,6 @@ router.post('/signin', (req, res) => {
         }else{
             
         }
-        console.log(findRes);
         if (findRes.length !== 0) {
             var pswd = findRes[0].password;
             if (password === pswd) {
@@ -34,10 +32,10 @@ router.post('/signin', (req, res) => {
 
 // signing up the user into
 router.post('/signup', (req, res) => {
-    var netId = req.body.netId.trim();
-    var name = req.body.name;
-    var email = req.body.email.trim();
-    var pswd = req.body.password.trim();
+    var netId = req.body.signUpBody.netId.trim();
+    var name = req.body.signUpBody.name;
+    var email = req.body.signUpBody.email.trim();
+    var pswd = req.body.signUpBody.password.trim();
     var msg = '';
     
     //check if the user already exists
