@@ -7,7 +7,7 @@ var db = monk('localhost:27017/utd-gamify');
 var userColl = db.get('users');
 
 // login is checking if the user entered the correct netid and password
-router.post('/login', (req, res) => {
+router.post('/signin', (req, res) => {
     var netId = req.body.netId.trim();
     var password = req.body.password.trim();
 
