@@ -1,19 +1,24 @@
-var express = require("express");
+var express = require('express');
+var monk = require('monk');
 
 const PORT = process.env.PORT || 3001;
 
+var authRouter = require('./routes/auth')
+
 const app = express();
-app.use(express.json());
 
 //db connection
-var monk = require('monk');
 var db = monk('localhost:27017/utd-gamify');
 var gamesColl = db.get('games');
 var locationColl = db.get('location');
 var roomColl = db.get('room');
-var usersColl = db.get('users');
 var logsColl = db.get('logs');
 
+// imported from libraries
+app.use(express.json());
+
+// for routes
+app.use('/api/v1/', authRouter)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);  
