@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import "../App.css";
+import Carousel from 'react-bootstrap/Carousel'
 
-
+import '../App.css';
+import chess from '../images/chess.jpeg';
+import squash from '../images/squash.jpg';
+import ttSU from '../images/ttSU.jpg';
 
 function Login() {
 
@@ -45,23 +48,22 @@ function Login() {
                 <div className="row container-fluid">
                     <div className="col-md-2"></div>
                     <div className="col-md-8 text-center">
-                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="./images/chess.jpeg" alt="First slide" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="./images/chess.jpeg" alt="Second slide" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="./images/chess.jpeg" alt="Third slide" />
-                                </div>
-                            </div>
-                        </div>
+
+                        <Carousel fade>
+                            <Carousel.Item>
+                                <img className="d-block w-100" src={chess} alt="First slide" />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img className="d-block w-100" src={squash} alt="First slide" />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img className="d-block w-100" src={ttSU} alt="First slide" />
+                            </Carousel.Item>
+                        </Carousel>
+
                     </div>
                     <div className="col-md-2"></div>
                 </div>
-
 
             </div>
         </div>
