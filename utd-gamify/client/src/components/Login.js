@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 import '../App.css';
-import chess from '../images/chess.jpeg';
+import pool from '../images/pool.jpeg';
 import squash from '../images/squash.jpg';
 import ttSU from '../images/ttSU.jpg';
 
+
 function Login() {
 
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState(true);
+
+    const signUp = () => {
+        console.log(`Hello world signUp`);
+    }
+
+    const signIn = () => {
+        console.log(`Hello world signIn`);
+    }
+
     return (
         <div>
-            <nav class="navbar navbar-dark header-bg p-2">
+            <nav className="navbar navbar-dark header-bg p-2">
                 <span className="container">
                     <span className="navbar-brand">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-joystick" viewBox="0 0 16 16">
@@ -28,15 +40,63 @@ function Login() {
 
                 </div>
                 {toggle &&
-                    <div>
-
+                    <div className="row container-fluid">
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4 text-center text-white">
+                            <Form>
+                                <h3>Sign In</h3>
+                                <Form.Group className="mb-3" controlId="formGroupNetID">
+                                    <Form.Control type="text" placeholder="Enter NetID" />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formGroupPassword">
+                                    <Form.Control type="password" placeholder="Enter Password" />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Button className='white-button'
+                                        onClick={signIn}>Login
+                                    </Button>
+                                </Form.Group>
+                                <Form.Label>Not a member! We got you covered :)</Form.Label>
+                                <Button className='white-button' onClick={() => setToggle(!toggle)}>Click here to Sign Up</Button>
+                            </Form>
+                        </div>
+                        <div className="col-md-4"></div>
                     </div>}
 
                 {!toggle &&
-                    <div></div>}
+                    <div className="row container-fluid">
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4 text-center text-white">
+                            <Form>
+                                <h3>Sign Up</h3>
+                                <Form.Group className="mb-3" controlId="formGroupNetID">
+                                    <Form.Control type="text" placeholder="Enter NetID" />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formGroupEmail">
+                                    <Form.Control type="email" placeholder="Enter Email" />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formGroupName">
+                                    <Form.Control type="text" placeholder="Enter Full Name" />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formGroupPassword">
+                                    <Form.Control type="password" placeholder="Enter Password" />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Button className='white-button'
+                                        onClick={signUp}>Sign Up
+                                    </Button>
+                                </Form.Group>
+                                <Button className='white-button'
+                                    onClick={() => setToggle(!toggle)}>Click here to Sign In
+                                </Button>
+                            </Form>
+                        </div>
+                        <div className="col-md-4"></div>
+                    </div>}
 
+                <hr />
 
-                <div className="row container-fluid">
+                <div className="row container-fluid mt-4">
                     <div className="col-md-2"></div>
                     <div className="col-md-8 text-center text-white">
                         <h3>Our Playground is your World</h3>
@@ -51,13 +111,13 @@ function Login() {
 
                         <Carousel fade>
                             <Carousel.Item>
-                                <img className="d-block w-100" src={chess} alt="First slide" />
+                                <img className="d-block carousel-img w-100" src={squash} alt="First slide" />
                             </Carousel.Item>
                             <Carousel.Item>
-                                <img className="d-block w-100" src={squash} alt="First slide" />
+                                <img className="d-block carousel-img w-100" src={pool} alt="Second slide" />
                             </Carousel.Item>
                             <Carousel.Item>
-                                <img className="d-block w-100" src={ttSU} alt="First slide" />
+                                <img className="d-block carousel-img w-100" src={ttSU} alt="Third slide" />
                             </Carousel.Item>
                         </Carousel>
 

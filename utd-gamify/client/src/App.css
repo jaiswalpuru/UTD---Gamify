@@ -11,6 +11,20 @@
   background-color: #5885AF;
 }
 
+.carousel-img{
+  /* width:100px; */
+  height: 70vh;
+}
+
+.white-border{
+  border: 3px solid white
+}
+
+.white-button{
+  background-color: #fff !important;
+ color: #0d6efd !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
