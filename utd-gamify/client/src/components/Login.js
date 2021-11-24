@@ -16,9 +16,7 @@ const Login = () => {
     const [signUpBody, setSignUpBody] = useState({});
     const [signInBody, setSignInBody] = useState({});
 
-    useEffect(() => {
-
-    }, []);
+    useEffect(() => {}, []);
 
     const signUp = () => {
         axios.post(`/api/v1/signup`, { signUpBody })
@@ -30,7 +28,7 @@ const Login = () => {
     const signIn = () => {
         axios.post(`/api/v1/signin`, { signInBody })
             .then((data) => {
-                console.log(data);
+                
             })
     }
 
