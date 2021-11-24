@@ -3,7 +3,8 @@ var monk = require('monk');
 
 const PORT = process.env.PORT || 3001;
 
-var authRouter = require('./routes/auth')
+var authRouter = require('./routes/auth');
+var featureRouter = require('./routes/feature');
 
 const app = express();
 
@@ -17,8 +18,9 @@ var logsColl = db.get('logs');
 // imported from libraries
 app.use(express.json());
 
-// for routes
+// routes
 app.use('/api/v1/', authRouter)
+app.use('/api/v1/', featureRouter)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);  

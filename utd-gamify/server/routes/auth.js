@@ -11,10 +11,10 @@ router.post('/signin', (req, res) => {
     var netId = req.body.signInBody.netId.trim();
     var password = req.body.signInBody.password.trim();
 
-    userColl.find({netId:netId}, function(err, findRes){
+    userColl.find({netId:netId}, (err, findRes) => {
         if (err) {
             throw err;
-        }else{
+        } else {
             
         }
         if (findRes.length !== 0) {
@@ -24,7 +24,7 @@ router.post('/signin', (req, res) => {
             } else {
                 res.json({message : "Username/Password didn't match"});
             }
-        }else {
+        } else {
             res.json({message : "Username/Password didn't match"});
         }
     });
@@ -39,7 +39,7 @@ router.post('/signup', (req, res) => {
     var msg = '';
     
     //check if the user already exists
-    userColl.findOne({netId:netId},function(err, findRes){
+    userColl.findOne({netId:netId}, (err, findRes) => {
         if (err) msg='500';
         if (findRes) {
             msg='400';
