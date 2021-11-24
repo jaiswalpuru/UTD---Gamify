@@ -16,6 +16,10 @@ const Login = () => {
     const [signUpBody, setSignUpBody] = useState({});
     const [signInBody, setSignInBody] = useState({});
 
+    useEffect(() => {
+
+    }, []);
+
     const signUp = () => {
         axios.post(`/api/v1/signup`, { signUpBody })
             .then((data) => {
