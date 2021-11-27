@@ -16,6 +16,15 @@
   height: 70vh;
 }
 
+.m-l-1{
+  margin-left: 1% !important;
+}
+
+.home-img{
+  width: 45vh;
+  height: 30vh;
+}
+
 .white-border{
   border: 3px solid white
 }
