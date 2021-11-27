@@ -13,10 +13,11 @@ const Home = (props) => {
     }, []);
 
     const loadLocations = () => {
-        axios.get('/api/v1/locations').then((data) => {
-            console.log(`onload`);
-            setLocations(data);
-        })
+        console.log(`onload`);
+
+        // axios.get('/api/v1/locations').then((data) => {
+        //     setLocations(data);
+        // })
     }
 
     return (
