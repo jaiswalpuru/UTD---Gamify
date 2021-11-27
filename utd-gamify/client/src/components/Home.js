@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //import pictures from below path for respective locations
 import pool from '../images/pool.jpeg';
-
+import jsom from '../images/jsom.jpeg';
 
 const Home = (props) => {
     const [locations, setLocations] = useState([]);
@@ -15,9 +15,9 @@ const Home = (props) => {
     const loadLocations = () => {
         console.log(`onload`);
 
-        // axios.get('/api/v1/locations').then((data) => {
-        //     setLocations(data);
-        // })
+        axios.get('/api/v1/locations').then((data) => {
+            setLocations(data.data);
+        });
     }
 
     return (
