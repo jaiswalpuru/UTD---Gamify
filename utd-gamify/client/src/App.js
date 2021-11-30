@@ -5,6 +5,7 @@ import "./App.css";
 
 import Login from "./components/Login";
 import Home from "./components/Home";
+import Location from "./components/Location";
 
 // function App() {
 //   const [data, setData] = useState(null);
@@ -41,6 +42,7 @@ const App = () => {
       <Routes>
         <Route path="/" exact element={<Login />} />
         <Route path="/home" exact element={<Home />} />
+        <Route path="/location" exact element={<Location />} />
       </Routes>
     </BrowserRouter>
   );
