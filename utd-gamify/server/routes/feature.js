@@ -72,7 +72,7 @@ router.post('/book', (req, res, next) => {
                 } else {
                     let prevTimeStart = result.timeStart;
                     let prevTimeDuration = result.timeDuration;
-                    if (prevTimeStart+prevTimeDuration < timeStart) {
+                    if (prevTimeStart+ (prevTimeDuration*60) < timeStart) {
                         res.json({"message":"Room is already booked"});
                     } else {
                         insertInMongo(obj);
