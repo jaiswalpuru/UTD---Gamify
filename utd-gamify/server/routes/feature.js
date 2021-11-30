@@ -18,10 +18,11 @@ function isEmptyObject(obj) {
 function insertInMongo(obj) {
     try {
         bookings.insert({
-            netId:obj.netId,
-            roomNum:obj.roomNum,
-            timeStart:obj.timeStart,
-            timeDuration:obj.timeDuration,
+            netId : obj.netId,
+            roomNum : obj.roomNum,
+            timeStart : obj.timeStart,
+            timeDuration : obj.timeDuration,
+            time : obj.time,
         },(err, res)=>{
             if (err) throw err;
             return res;
@@ -55,24 +56,25 @@ router.post('/book', (req, res, next) => {
             let roomNumber = req.body.roomNum;
             let timeDuration = req.body.timeDuration;
             let timeStart = Date.now();
+            let time = new Date();
 
             let obj = {
                 netId : bookedBy,
                 roomNum : roomNumber,
                 timeStart : timeStart,
                 timeDuration : timeDuration,
+                time : time,
             }
 
-            roomsColl.find({'roomNum':parseInt(roomNumber)},(err, result)=>{
+            bookings.findOne({'roomNum':parseInt(roomNumber)},(err, result)=>{
                 if (err) throw err;
-
-                if (result.length === 0) {
+                if (result === null) {
                     insertInMongo(obj);
                     res.json(obj);
                 } else {
                     let prevTimeStart = result.timeStart;
                     let prevTimeDuration = result.timeDuration;
-                    if (prevTimeStart+ (prevTimeDuration*60) < timeStart) {
+                    if (prevTimeStart + (prevTimeDuration * 60_000) > timeStart) {
                         res.json({"message":"Room is already booked"});
                     } else {
                         insertInMongo(obj);
