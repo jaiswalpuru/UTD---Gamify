@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
-//import pictures from below path for respective locations
-import pool from '../images/pool.jpeg';
-import jsom from '../images/jsom.jpeg';
+const images = require.context('../../public/images', true);
 
 const Home = (props) => {
     const [locations, setLocations] = useState([]);
-
     useEffect(() => {
         loadLocations();
     }, []);
@@ -19,13 +16,13 @@ const Home = (props) => {
             setLocations(data.data);
         });
     }
-
+    
     return (
         <div>
-            <div className="row conatiner m-l-1">
+            <div className="row container m-l-1">
                 {locations.map(location => (
-                    <div className="col-md-3" onClick={() => { console.log(`nagivate to individual page`); }}>
-                        <img className="d-block home-img" src={location.image_name} alt="slide" />
+                    <div className="col-md-3" key={location._id} onClick={() => { console.log("nagivate to individual page"); }}>
+                        <img className="d-block home-img" src={images(`./${location.image_name}`).default} alt="slide" />
                         <div className="text-center">
                             {location.location_name}
                         </div>
