@@ -14,56 +14,51 @@ router.post('/signin', (req, res) => {
     userColl.find({netId:netId}, (err, findRes) => {
         if (err) {
             throw err;
-        } else {
-            
         }
+
         if (findRes.length !== 0) {
             var pswd = findRes[0].password;
             if (password === pswd) {
                 res.json({username : netId});
             } else {
-                res.json({message : "Username/Password didn't match"});
+                res.json({message : "","error" : 'Username/Password didn\'t match'});
             }
         } else {
-            res.json({message : "Username/Password didn't match"});
+            res.json({message : "","error" : 'Username/Password didn\'t match'});
         }
     });
 });
 
 // signing up the user into
 router.post('/signup', (req, res) => {
-    var netId = req.body.signUpBody.netId.trim();
-    var name = req.body.signUpBody.name;
-    var email = req.body.signUpBody.email.trim();
-    var pswd = req.body.signUpBody.password.trim();
-    var msg = '';
-    
+    let netId = req.body.signUpBody.netIdSU.trim();
+    let name = req.body.signUpBody.name;
+    let email = req.body.signUpBody.email.trim();
+    let pswd = req.body.signUpBody.passwordSU.trim();
+    let msg = '';
+    let err_msg = '';
+
     //check if the user already exists
     userColl.findOne({netId:netId}, (err, findRes) => {
-        if (err) msg='500';
+        if (err) throw err;
         if (findRes) {
-            msg='400';
+            msg='User already exits';
+            res.json({"message" : msg, "error" : err_msg});
         } else {
             //insert the user
-            try {
-                userColl.insert({
-                    netId : netId,
-                    name : name,
-                    email : email,
-                    password : pswd,
-                }, function(err, insertRes) {
-                    if (err) {
-                        msg = '500';   
-                    } else {
-                        msg = '200';
-                    }
-                    
-                });
-            } catch(err) {
-                msg = '500';
-            }
+            userColl.insert({
+                netId : netId,
+                username : name,
+                email : email,
+                role : "student",
+                password : pswd,
+                created_date: new Date(),
+            }, function(err, insertRes) {
+                if (err) { throw err; }
+            });    
+            msg = 'User SignUp Successfull';
+            res.json({"message" : msg, "error" : err_msg});
         }
-        res.json(msg);
     });
 });
 
