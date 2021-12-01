@@ -13,8 +13,8 @@ import ttSU from '../images/ttSU.jpg';
 const Login = () => {
 
     const [toggle, setToggle] = useState(true);
-    const [signUpBody, setSignUpBody] = useState({});
-    const [signInBody, setSignInBody] = useState({});
+    const [signInBody, setSignInBody] = useState({ netIdSI: '', passwordSI: '' });
+    const [signUpBody, setSignUpBody] = useState({ netIdSU: '', name: '', email: '', passwordSU: '', role: 'STUDENT' });
 
     useEffect(() => { }, []);
 
@@ -45,13 +45,13 @@ const Login = () => {
                                 <h3>Sign In</h3>
                                 <Form.Group className="mb-3" controlId="formGroupNetID">
                                     <Form.Control type="text" placeholder="Enter NetID"
-                                        name="netId" value={signInBody.netId}
+                                        name="netIdSI" value={signInBody.netIdSI}
                                         onChange={e => setSignInBody({ ...signInBody, [e.target.name]: e.target.value })}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
                                     <Form.Control type="password" placeholder="Enter Password"
-                                        name="password" value={signInBody.password}
+                                        name="passwordSI" value={signInBody.passwordSI}
                                         onChange={e => setSignInBody({ ...signInBody, [e.target.name]: e.target.value })}
                                     />
                                 </Form.Group>
@@ -75,7 +75,7 @@ const Login = () => {
                                 <h3>Sign Up</h3>
                                 <Form.Group className="mb-3" controlId="formGroupNetID">
                                     <Form.Control type="text" placeholder="Enter NetID"
-                                        name="netId" value={signInBody.netId}
+                                        name="netIdSU" value={signInBody.netIdSU}
                                         onChange={e => setSignUpBody({ ...signUpBody, [e.target.name]: e.target.value })}
                                     />
                                 </Form.Group>
@@ -93,7 +93,7 @@ const Login = () => {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
                                     <Form.Control type="password" placeholder="Enter Password"
-                                        name="password" value={signInBody.password}
+                                        name="passwordSU" value={signInBody.passwordSU}
                                         onChange={e => setSignUpBody({ ...signUpBody, [e.target.name]: e.target.value })}
                                     />
                                 </Form.Group>
